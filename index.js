@@ -464,7 +464,7 @@ var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
 if(!kanal) return;
 var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
 if(!hedef) return;
-client.channels.cache.get(kanal).send(`<a:girdi:830003542726148156> **${member} Sunucuya katıldı! Hedefimize ulaşmamıza __${hedef - member.guild.memberCount}__ kişi kaldı!**`)
+client.channels.cache.get(kanal).send(`<a:girdi:830003542726148156> ${member} Sunucuya katıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
 if(hedef <= member.guild.memberCount){
   client.channels.cache.get(kanal).send(`Hedefimizi başardık! Sunucumuz ${hedef} kişiye ulaştı!`)
   qdb.delete(`sayackanali_${member.guild.id}`)
@@ -476,23 +476,8 @@ var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
 if(!kanal) return;
 var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
 if(!hedef) return;
-client.channels.cache.get(kanal).send(`<a:cikti:830003832419254313> **${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza __${hedef - member.guild.memberCount}__ kişi kaldı!**`)
+client.channels.cache.get(kanal).send(`<a:girdi:830003542726148156> ${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
 })
-//sahibim geldi
-client.on("message", async message => {
-  const ms = require('parse-ms')
-   let dogrulama = await db.fetch(`sahiponay_${message.author.id}_${message.guild.id}`);
-    let gun = 1800000; 
-    if (dogrulama !== null && gun - (Date.now() - dogrulama) > 0) {
-       
-    } else {
-          if(message.author.id === ayarlar.sahip){
-           db.set(`sahiponay_${message.author.id}_${message.guild.id}`, Date.now())
-            message.channel.send("Hizzaya Geçin işte Benim Sahibim").then(msg => msg.delete (15000))
-            }
-        }
-       
-});
 //otorol
 client.on('guildMemberAdd', async (member) =>{
     let otorol = await db.fetch(`SwenlorOtorol.${member.guild.id}`)
