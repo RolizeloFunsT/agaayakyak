@@ -476,7 +476,7 @@ var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
 if(!kanal) return;
 var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
 if(!hedef) return;
-client.channels.cache.get(kanal).send(`<a:girdi:830003542726148156> ${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
+client.channels.cache.get(kanal).send(`<a:cikti:830003832419254313> ${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
 })
 //otorol
 client.on('guildMemberAdd', async (member) =>{
