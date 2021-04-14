@@ -17,14 +17,8 @@ module.exports = client => {
   );
   client.user.setStatus("dn");
   var oyun = [
-    "Roliz",
-    "Yenilendi!",
-    "Yeni Özellikler!",
-    "Made By FunsT",
-    "!medya | 🎉",
-    "Otorol Geldi!",
-    "Sayaç Eklendi!",
-    "Reklam Engel Geliştirildi!"
+"Dev Bakımda!",
+    "By FunsT"
     
   ];
 
