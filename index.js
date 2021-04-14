@@ -347,26 +347,13 @@ client.on("message" , async msg => {
 //-------------------- Sa As Sistemi --------------------//
 
 
-client.on("message", async msg => {
- 
- 
-  const i = await db.fetch(`ssaass_${msg.guild.id}`);
-    if (i == 'acik') {
-      if (msg.content.toLowerCase() == 'sa' || msg.content.toLowerCase() == 's.a' || msg.content.toLowerCase() == 'selamun aleyküm' || msg.content.toLowerCase() == 'sea'|| msg.content.toLowerCase() == 'selam') {
-          try {
- 
-                  return msg.reply(
-                    'Aleyküm Selam, Hoşgeldin')
-          } catch(err) {
-            console.log(err);
-          }
+client.on('message', async (msg, member, guild) => {
+  let i = await  db.fetch(`saas_${msg.guild.id}`)
+      if(i === 'açık') {
+        if (msg.content.toLowerCase() === 'sa') {
+        msg.reply('Aleyküm Selam Hoşgeldin');      
+      } 
       }
-    }
-    else if (i == 'kapali') {
-   
-    }
-    if (!i) return;
- 
     });
 //-------------------- Sa As Sistemi --------------------//
 //-------------------- Sa As Sistemi --------------------//
