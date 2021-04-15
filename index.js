@@ -353,30 +353,24 @@ client.on("message" , async msg => {
  
 client.on("message", async msg => {
 
-  let saas = await db.fetch(`saas_${msg.guild.id}`);
 
-  if (saas == 'kapali') return;
+  const i = await db.fetch(`ssaass_${msg.guild.id}`);
+    if (i == 'acik') {
+      if (msg.content.toLowerCase() == 'sa' || msg.content.toLowerCase() == 's.a' || msg.content.toLowerCase() == 'selamun aleyküm') {
+          try {
 
-  if (saas == 'acik') {
-
-  if (msg.content.toLowerCase() === 'sa') {
+                  return msg.reply('**Aleyküm Selam, Hoşgeldin :)** ')
+          } catch(err) {
+            console.log(err);
+          }
+      }
+    }
+    else if (i == 'kapali') {
     
-    if (msg.content.toLowerCase() === 's.a') {
-      
-      if (msg.content.toLowerCase() === 'selam') {
+    }
+    if (!i) return;
 
-    msg.reply('ve aleykum selam kardeeeeş');
-
-  }
-
-  }
-    
-  }
-    
-  }
-
-});
-
+    });
 
 //-------------------- Sa As Sistemi --------------------//
 //-------------------- Sa As Sistemi --------------------//
@@ -469,25 +463,36 @@ client.on("message", async message => {
 //-------------------- Prefix Sistemi --------------------//
 
 //sayaç
-client.on("guildMemberAdd", member => {
-var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
-if(!kanal) return;
-var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
-if(!hedef) return;
-client.channels.cache.get(kanal).send(`<a:girdi:830003542726148156> ${member} Sunucuya katıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
-if(hedef <= member.guild.memberCount){
-  client.channels.cache.get(kanal).send(`Hedefimizi başardık! Sunucumuz ${hedef} kişiye ulaştı!`)
-  qdb.delete(`sayackanali_${member.guild.id}`)
-  qdb.delete(`sayachedef_${member.guild.id}`)
-}
-})
-client.on("guildMemberRemove", member => {
-var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
-if(!kanal) return;
-var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
-if(!hedef) return;
-client.channels.cache.get(kanal).send(`<a:cikti:830003832419254313> ${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
-})
+client.on("message", async message => {
+  if (!message.guild) return;
+
+  if (db.has(`sayac_${message.guild.id}`) === true) {
+    if (db.fetch(`sayac_${message.guild.id}`) <= message.guild.members.cache.size) {
+      const embed = new Discord.MessageEmbed()
+        .setTitle(`Tebrikler ${message.guild.name}!`)
+        .setDescription(`Başarıyla \`${db.fetch(`sayac_${message.guild.id}`)}\` kullanıcıya ulaştık! Sayaç sıfırlandı!`)
+        .setColor("RANDOM");
+      message.channel.send(embed);
+      message.guild.owner.send(embed);
+      db.delete(`sayac_${message.guild.id}`);
+    }
+  }
+});
+client.on("guildMemberRemove", async member => {
+  const channel = db.fetch(`sKanal_${member.guild.id}`);
+  if (db.has(`sayac_${member.guild.id}`) == false) return;
+  if (db.has(`sKanal_${member.guild.id}`) == false) return;
+
+    member.guild.channels.cache.get(channel).send(`**${member.user.tag}** Sunucudan ayrıldı! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.memberCount}\` üye kaldı!`);
+});
+client.on("guildMemberAdd", async member => {
+  const channel = db.fetch(`sKanal_${member.guild.id}`);
+  if (db.has(`sayac_${member.guild.id}`) == false) return;
+  if (db.has(`sKanal_${member.guild.id}`) == false) return;
+
+    member.guild.channels.cache.get(channel).send(`**${member.user.tag}** Sunucuya Katıldı :tada:! \`${db.fetch(`sayac_${member.guild.id}`)}\` üye olmamıza son \`${db.fetch(`sayac_${member.guild.id}`) - member.guild.memberCount}\` üye kaldı!`);
+});
+
 //otorol
 client.on('guildMemberAdd', async (member) =>{
     let otorol = await db.fetch(`SwenlorOtorol.${member.guild.id}`)
