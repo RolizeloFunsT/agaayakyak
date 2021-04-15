@@ -22,7 +22,7 @@ module.exports = message => {
       cmd = client.commands.get(client.aliases.get(command));
     } else {
       if(command == '') return;
-    message.reply("Sunucuda`" + command + '` adında bir komut bulunamadı')
+    message.reply("`" + command + '`komutunu kullanamazsın! Bot yeniden kodlanıyor, Roliz 2.0 BETA')
   }
   }
   if (client.commands.has(command)) {

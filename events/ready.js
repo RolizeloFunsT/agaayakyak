@@ -18,7 +18,9 @@ module.exports = client => {
   client.user.setStatus("dn");
   var oyun = [
 "Dev Bakımda!",
-    "By FunsT"
+    "By FunsT",
+    "Sıfırdan Kodlanıyor",
+    "Roliz 2.0 Geliyor!"
     
   ];
 
