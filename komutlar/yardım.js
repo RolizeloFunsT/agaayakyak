@@ -16,6 +16,7 @@ const EmbedFwhyCode = new Discord.MessageEmbed()
 > **» !logo :** Logo Komutlarını Görürsünüz.
 > **» !medya :** Bot İle İlgili Bağlantılar.
 > **» !aboneyardım :** Abone Komutlarını Atar.
+> **» !botlistyardım :** Bot List Komutlarını Atar.
 
 ** :gear: **Bilgilendirme** :gear: **
 Bu komut ${message.author.username} tarafından istendi! 
