@@ -266,12 +266,17 @@ client.on("message", async msg => {
 
 client.on('guildMemberAdd', async member => {
     var rol = await db.fetch(`rol_${member.guild.id}`)
+    
+    member.roles.add(rol)
+})
+client.on('guildMemberAdd', async member => {
+    var rol = await db.fetch(`rol_${member.guild.id}`)
     var kanal = await db.fetch(`kanal_${member.guild.id}`)
 
     var embed = new Discord.MessageEmbed()
     .setTitle(`Roliz Otorol`)
     .setDescription(`Otorol ${member.user} adlı kişiye, <@&${rol}> adında rol verildi!`)
-    .setColor("GREEN")
+    .setColor("RANDOM")
     .setTimestamp()
   client.channels.cache.get(kanal).send(embed)
 })
@@ -345,28 +350,34 @@ client.on("message" , async msg => {
 //-------------------- Sa As Sistemi --------------------//
 //-------------------- Sa As Sistemi --------------------//
 //-------------------- Sa As Sistemi --------------------//
-
-
+ 
 client.on("message", async msg => {
-const Database = require("plasma-db");
-const db = new Database("./database.json"); 
-  const gereksiz = await db.fetch(`saas_${msg.guild.id}`);
-  if (gereksiz === "aktif") {
-    if (
-      msg.content.toLowerCase() == "selam" ||
-      msg.content.toLowerCase() == "selamun aleyküm" ||
-      msg.content.toLowerCase() == "s.a" ||
-      msg.content.toLowerCase() == "sea" ||
-      msg.content.toLowerCase() == "sa" ||
-      msg.content.toLowerCase() == "selamm" ||
-      msg.content.toLowerCase() == "saa" ||
-      msg.content.toLowerCase() == "saaa"
-    )
-        return msg.reply("Aleyküm selam hoşgeldin nasılsın?");
-    } else if (gereksiz === "deaktif") {
+
+  let saas = await db.fetch(`saas_${msg.guild.id}`);
+
+  if (saas == 'kapali') return;
+
+  if (saas == 'acik') {
+
+  if (msg.content.toLowerCase() === 'sa') {
+    
+    if (msg.content.toLowerCase() === 's.a') {
+      
+      if (msg.content.toLowerCase() === 'selam') {
+
+    msg.reply('ve aleykum selam kardeeeeş');
+
+  }
+
+  }
+    
   }
-  if (!gereksiz) return;
+    
+  }
+
 });
+
+
 //-------------------- Sa As Sistemi --------------------//
 //-------------------- Sa As Sistemi --------------------//
 //-------------------- Sa As Sistemi --------------------//

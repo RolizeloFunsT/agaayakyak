@@ -1,33 +1,37 @@
 const db = require('quick.db')
 const Discord = require('discord.js')
-
+ 
+ 
 exports.run = async (bot, message, args) => {
-  
-  if (!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send(':no_entry: Bu komudu kullanabilmek için `Sunucuyu Yönet` yetkisine sahip olmalısın!')
-  if (!args[0]) return message.channel.send(':no_entry: Sa-as yazısını açmak için; `l!sa-as aç veya kapat`')
-  
-  if (args[0] == 'aç') {
-    db.set(`saas_${message.guild.id}`, 'açık')
-      message.channel.send(`✔Başarıyla botun \`Aleyküm selam\` yazmasını açtınız., Artık bot \`sa\` yazıldığında cevap verecek.`)
+  if (!args[0]) return message.channel.send(`Aç yada kapat yazmalısın!! Örnek: **!sa-as aç**`)
+  if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(' Bu komutu kullanmak için \`MESAJLARI_YÖNET\` yetkisine sahip olmalısın!')
+ 
+  if (args[0] === 'aç') {
     
+    db.set(`ssaass_${message.guild.id}`, 'acik')
+    message.channel.send(`Artık bot Sa diyince As diyecek. Kapatmak için "\`!sa-as kapat\`" yazmalısın.`)
+ 
   }
-  if (args[0] == 'kapat') {
-    db.set(`saas_${message.guild.id}`, 'kapali')
-      message.channel.send(`✔ Başarıyla \`Aleyküm selam\` yazmasını kapattınız, Artık bot \`sa\` yazıldığında cevap vermeyecek.`)
+  
+  if (args[0] === 'kapat') {
     
-  }
+    db.set(`ssaass_${message.guild.id}`, 'kapali')
+    message.channel.send(`Artık biri sa diyince cevap vermicek.`)
 
+  }
+ 
 }
-
+//codare
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
-  permLevel: 0
+  aliases: ['sa-as-sistemi'],
+  permLevel: 0,
+  kategori: "Ayarlar"
 };
-
+ 
 exports.help = {
   name: 'sa-as',
-  description: 'Selamün aleyküm, Aleyküm selam',
+  description: 'Sa As ayarlarsın.',
   usage: 'sa-as'
 };
