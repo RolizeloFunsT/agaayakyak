@@ -1,32 +1,23 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
+const Discord = require('discord.js')
+ 
+exports.run = async (client ,message, args) =>{
 
-exports.run = async (app, message, client) => {
   
-  const plasmic = new Discord.MessageEmbed()
+  const embed = new Discord.MessageEmbed()
+  .setTitle("Pingim")
   .setColor("RANDOM")
-  .setDescription('Ping Hesaplanıyor...')
-  
-   let plasmicc = Date.now(); 
-   let plasmiccode = await message.channel.send(plasmic)
-   let plasmiccodee = (Date.now() - plasmicc); 
-   let plasmicAPI = (app.ws.ping).toFixed(2)
-    setInterval(() => {
-   const plasmiccc = new Discord.MessageEmbed()
-   .setDescription(`\n Mesaj Gecikme Süresi ; **${plasmiccodee}Ms** \n\n Bot Gecikme Süresi ; **${plasmicAPI}Ms**`)
-   .setColor('RANDOM')
-    plasmiccode.edit(plasmiccc);
-    }, 5000)
+  .setDescription(`${client.ws.ping} ms`)
+  message.channel.send(embed)
 };
 exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: ['ms'],
-  permLevel: 0
+ enabled: true,
+ guildOnly: false,
+ aliases: ['ping'],
+ permLevel: 0
 };
-
+ 
 exports.help = {
-  name: 'ping',
-  description: 'Ping komutu işte yaw',
-  usage: 'ping'
+ name: 'ping',
+ description: 'Bot Pingi',
+ usage: '!ping'
 };

@@ -3,6 +3,7 @@ dependencies:
   chalk: 4.1.0
   common-tags: 1.8.0
   discord.js: 12.5.3
+  eris: 0.15.0
   expres: 0.0.5
   express: 4.17.1
   ffmpeg: 0.0.4
@@ -1049,6 +1050,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-MyoZ0jgnLvB2X3Lg5HqpFmn1kybDiIfEQmKzTb5apr51Rb+T3KdmMiqa70T+bhGnyv7bQ6WMj2QMHpGMmlrUYQ==
+  /eris/0.15.0:
+    dependencies:
+      ws: 7.4.4
+    dev: false
+    engines:
+      node: '>=10.4.0'
+    optionalDependencies:
+      opusscript: 0.0.8
+      tweetnacl: 1.0.3
+    resolution:
+      integrity: sha512-muBdi5XyMXdxFQ8xUG6yofq40/Z02CHlqJP7zIdHhpdDiHvFM/mybGiFAHuoSYcsVTTvEfbUaAJ+SDEmMjARYw==
   /escape-html/1.0.3:
     dev: false
     resolution:
@@ -2086,6 +2098,11 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
+  /opusscript/0.0.8:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-VSTi1aWFuCkRCVq+tx/BQ5q9fMnQ9pVZ3JU4UHKqTkf0ED3fKEPdr+gKAAl3IA2hj9rrP6iyq3hlcJq3HELtNQ==
   /os-homedir/1.0.2:
     dev: false
     engines:
@@ -3008,6 +3025,7 @@ specifiers:
   chalk: ^4.1.0
   common-tags: ^1.8.0
   discord.js: ^12.5.2
+  eris: 0.15.0
   expres: 0.0.5
   express: ^4.17.1
   ffmpeg: ^0.0.4
