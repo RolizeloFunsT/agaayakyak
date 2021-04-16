@@ -5,7 +5,7 @@ exports.run = async(client, message, args) => {
 const duration = moment.duration(client.uptime).format("D [gün], H [saat], m [dakika], s [saniye]")
 const embed = new Discord.MessageEmbed()
 .setColor('GREEN')
-.setThumbnail('https://cdn.discordapp.com/avatars/761475156487962625/4be06fa16f3b9d5110927ebc91744535.webp?size=1024')
+.setThumbnail('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fb4b6052a1d4c2a17a53a5d77c5945c1c.png?v=1618560560952')
 .setAuthor(`${client.user.username} İstatistikleri`, client.user.displayAvatarURL({dynamic: true}))
 .addField(":satellite: Gecikme", `**${client.ws.ping}** ms`, true)
 .addField(":alarm_clock: Çalışma Süresi", duration, true)

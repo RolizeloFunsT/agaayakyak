@@ -58,13 +58,14 @@ return message.channel.send('Sistem başarı ile sıfırlandı!')
 if(args[0] == "yardım") {
    const embed = new discord.MessageEmbed()
     .setTitle(`**Küfür engel komutları**`)
-   .setThumbnail('https://cdn.discordapp.com/avatars/761475156487962625/4be06fa16f3b9d5110927ebc91744535.webp?size=1024')
+   .setThumbnail('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fb4b6052a1d4c2a17a53a5d77c5945c1c.png?v=1618560560952')
        .addField('.küfür-engel yardım', 'Küfür Engel yardım menüsü', true)
     .addField('.küfür-engel log', 'Küfür-engel log kanalını ayarlarsınız', true)
     .addField('.küfür-engel aç', 'Küfür engel sistemini açarsınız', true)
     .addField('.küfür-engel sıfırla', 'Küfür engel sistemini sıfırlarsınız', true)
     .addField('.küfür-engel mesaj', 'Küfür engel mesaj ayarlarsınız.', true)
 .setColor('BLUE')
+   .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
     message.channel.send(embed)
 
 

@@ -26,7 +26,7 @@ if(!abonerol) return message.channel.send(`Abone rolü ayarlanmamış!`)
   .setThumbnail(user.avatarURL())
   .setColor(`GOLD`)
   .setFooter(`${client.user.username}  Abone Sistemi`)
-  .setImage("" );
+  .setImage("https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199");
   message.guild.channels.cache.get(abonelog).send(embed)
 }
 
