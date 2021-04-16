@@ -20,7 +20,8 @@ module.exports = client => {
 "Dev Bakımda!",
     "By FunsT",
     "Sıfırdan Kodlanıyor",
-    "Roliz 2.0 Geliyor!"
+    "Roliz 2.0 Geliyor!",
+    "2.0 BETA"
     
   ];
 

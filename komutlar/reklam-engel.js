@@ -63,7 +63,7 @@ if(args[0] == "yardım") {
     .addField('.reklam-engel log', 'Reklam-engel log kanalını ayarlarsınız', true)
     .addField('.reklam-engel aç', 'Reklam engel sistemini açarsınız', true)
     .addField('.reklam-engel sıfırla', 'Reklam engel sistemini sıfırlarsınız', true)
-    .addField('.Reklamreklam-engel mesaj', 'Reklam engel mesaj ayarlarsınız.', true)
+    .addField('.reklam-engel mesaj', 'Reklam engel mesaj ayarlarsınız.', true)
 .setColor('BLUE')
    .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
     message.channel.send(embed)

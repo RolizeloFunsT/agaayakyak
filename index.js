@@ -186,18 +186,18 @@ else return;
 client.on('message', async msg => {
 const Database = require("plasma-db");
 const db = new Database("./database.json");
-let engin = db.fetch(`küfürengellog_${msg.guild.id}`)
-let enginn = db.fetch(`küfürengelmesaj_${msg.guild.id}`)
-let enginar = db.fetch(`küfürengel_${msg.guild.id}`)
+let engin = db.fetch(`reklamengellog_${msg.guild.id}`)
+let enginn = db.fetch(`reklamengelmesaj_${msg.guild.id}`)
+let enginar = db.fetch(`reklamengel_${msg.guild.id}`)
 if(enginar === "aktif") {
-const kufurler = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "sik", "yarrak", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "amq",];
+const kufurler = [".com", ".net", ".xyz", ".tk", ".pw", ".io", ".me", ".gg", "www.", "https", "http", ".gl", ".org", ".com.tr", ".biz", "net", ".rf.gd", ".az", ".party", "discord.gg",];
 if (kufurler.some(word => msg.content.includes(word))) {
   try {
     if (!msg.member.hasPermission("BAN_MEMBERS")) {
           msg.delete();
           const embed = new Discord.MessageEmbed()
           .setTitle('Bir reklam yakaladım!')
-          .setDescription(`<@${msg.author.id}> adlı kullanıcı reklam ya! \n Kullanıcının ettiği küfür silindi!`)
+          .setDescription(`<@${msg.author.id}> adlı kullanıcı reklam yaptı! \n Kullanıcının yaptığı reklam silindi!`)
           client.channels.cache.get(engin).send(embed)
           return msg.channel.send(`<@${msg.author.id}>, ${enginn}`)
  
