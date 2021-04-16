@@ -2,8 +2,7 @@ const discord = require('discord.js');
 const Database = require("plasma-db");
 const db = new Database("./database.json");
 exports.run = async(client, message, args) => {
-    if(
-      message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('Bu komutu kullanabilmek için `Mesajları Yönet` yetkisine sahip olmalısın')
+    if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('Bu komutu kullanabilmek için `Yönetici` yetkisine sahip olmalısın')
     if(!args[0]) return message.channel.send(`Merhaba komutlar için lütfen .küfür-engel yardım yazınız!`)    
     if(args[0] == "log") {
 let enginar = message.mentions.channels.first()
@@ -58,9 +57,14 @@ return message.channel.send('Sistem başarı ile sıfırlandı!')
 //
 if(args[0] == "yardım") {
    const embed = new discord.MessageEmbed()
-    .setTitle(`Küfür engel komutları`)
-    .setDescription(`.küfür-engel yardım = Küfür engel komutlarını görürsünüz. \n .küfür-engel log = Küfür-engel log kanalını ayarlarsınız. \n .küfür-engel aç = Küfür engel sistemini açarsınız \n .küfür-engel sıfırla = Küfür engel sistemini sıfırlarsınız \n .küfür-engel mesaj = Küfür engel mesaj ayarlarsınız.`)
-.setColor('RANDOM')
+    .setTitle(`**Küfür engel komutları**`)
+   .setThumbnail('https://cdn.discordapp.com/avatars/761475156487962625/4be06fa16f3b9d5110927ebc91744535.webp?size=1024')
+       .addField('.küfür-engel yardım', 'Küfür Engel yardım menüsü', true)
+    .addField('.küfür-engel log', 'Küfür-engel log kanalını ayarlarsınız', true)
+    .addField('.küfür-engel aç', 'Küfür engel sistemini açarsınız', true)
+    .addField('.küfür-engel sıfırla', 'Küfür engel sistemini sıfırlarsınız', true)
+    .addField('.küfür-engel mesaj', 'Küfür engel mesaj ayarlarsınız.', true)
+.setColor('BLUE')
     message.channel.send(embed)
 
 
