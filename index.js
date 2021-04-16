@@ -253,3 +253,10 @@ client.on('guildMemberAdd', async member => {
   client.channels.cache.get(kanal).send(embed)
 })
 //otorol
+//otoisim
+client.on('guildMemberAdd', member => {  
+  var arezreiz = qdb.fetch(`otoisim_${member.guild.id}`)
+  if(!arezreiz) return;
+  member.setNickname(arezreiz)
+ })
+//otoisim
