@@ -20,11 +20,11 @@ exports.conf = {
 enabled: true,
 guildOnly: false,
 permLevel: 0,
-aliases: ['help']
+aliases: ['mod']
 
 
 
 };
 exports.help = {
-name: "yardım"
+name: "moderasyon"
 };

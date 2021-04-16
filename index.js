@@ -152,3 +152,32 @@ const db = new Database("./database.json");
 });
 
 //-------------------- Sa As Sistemi --------------------//
+//-------------------- Küfür Engel ---------------------//
+client.on('message', async msg => {
+const Database = require("plasma-db");
+const db = new Database("./database.json");
+let engin = db.fetch(`küfürengellog_${msg.guild.id}`)
+let enginn = db.fetch(`küfürengelmesaj_${msg.guild.id}`)
+let enginar = db.fetch(`küfürengel_${msg.guild.id}`)
+if(enginar === "aktif") {
+const kufurler = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "sik", "yarrak", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "amq",];
+if (kufurler.some(word => msg.content.includes(word))) {
+  try {
+    if (!msg.member.hasPermission("BAN_MEMBERS")) {
+          msg.delete();
+          const embed = new Discord.MessageEmbed()
+          .setTitle('Bir küfür yakaladım!')
+          .setDescription(`<@${msg.author.id}> adlı kullanıcı küfürlü kelime kullandı! \n Kullanıcının ettiği küfür silindi!`)
+          client.channels.cache.get(engin).send(embed)
+          return msg.channel.send(`<@${msg.author.id}>, ${enginn}`)
+ 
+        }              
+      } 
+      catch(err) {
+        console.log(err);
+      }
+}
+}
+else return;
+});
+//-------------------- Küfür Engel ---------------------//
