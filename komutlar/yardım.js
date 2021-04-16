@@ -10,6 +10,7 @@ exports.run = async(client, message, args) => {
     .addField('.küfür-engel', 'küfür engel menüsü', true)
     .addField('.reklam-engel', 'reklam engel menüsü', true)
         .addField('.botlist', 'botlist menüsü', true)
+    .addField('.sayaç', 'sayaç menüsü', true)
     .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
 
 message.channel.send(embed)
