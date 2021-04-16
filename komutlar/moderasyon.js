@@ -2,11 +2,10 @@ const discord = require('discord.js');
 exports.run = async(client, message, args) => {
     const embed = new discord.MessageEmbed()
     .setTitle('Roliz Yardım')
-    .setColor('GOLD')
+    .setColor('PURPLE')
     .setThumbnail('https://cdn.discordapp.com/avatars/761475156487962625/4be06fa16f3b9d5110927ebc91744535.webp?size=1024')
-     .addField('.yardım', 'yardım menüsü', true)
     .addField('.istatistik', 'boyun istatistikleri', true)
-    .addField('.moderasyon', 'moderasyon menüsü', true)
+    .addField('.yardım', 'yardım menüsü', true)
     .addField('.yardım', 'yardım menüsü', true)
     .addField('.yardım', 'yardım menüsü', true)
     .addField('.yardım', 'yardım menüsü', true)
