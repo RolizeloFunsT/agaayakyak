@@ -128,3 +128,4 @@ client.on("ready", () => {
 client.on("ready", () => {
   client.channels.cache.get("807162915449995314").join();
 })
+//------/ Küfür Engel /-----//
