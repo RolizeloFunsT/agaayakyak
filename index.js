@@ -235,3 +235,21 @@ client.channels.cache.get(kanal).send(`:x: ${member.user.tag} sunucudan ayrıld�
 })
 
 //sayaç
+//otorol
+client.on('guildMemberAdd', async member => {
+    var rol = await db.fetch(`rol_${member.guild.id}`)
+    
+    member.roles.add(rol)
+})
+client.on('guildMemberAdd', async member => {
+    var rol = await db.fetch(`rol_${member.guild.id}`)
+    var kanal = await db.fetch(`kanal_${member.guild.id}`)
+
+    var embed = new Discord.MessageEmbed()
+    .setTitle(`Bee6 Otorol`)
+    .setDescription(`Otorol ${member.user} adlı kişiye, <@&${rol}> adında rol verildi!`)
+    .setColor("RANDOM")
+    .setTimestamp()
+  client.channels.cache.get(kanal).send(embed)
+})
+//otorol
