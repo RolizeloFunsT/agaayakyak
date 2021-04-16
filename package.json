@@ -36,7 +36,8 @@
     "pokedex-api": "^1.1.2",
     "js-robloxapi": "^1.0.6",
     "wio.db": "^4.0.20",
-    "proton-io": "^0.1.5"
+    "proton-io": "^0.1.5",
+    "plasma-db": "1.1.0"
   },
   "engines": {
     "node": "12.x"
