@@ -304,3 +304,9 @@ client.on('messageDelete', async message => {// can#0002
 });
 
 //snipe
+
+//çekiliş
+
+
+
+//çekiliş
