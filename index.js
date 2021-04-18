@@ -14,27 +14,6 @@ const snekfetch = require('snekfetch');
 require("./util/eventLoader")(client);
 const qdb = require('quick.db');
 
-
-//-------------------- 7/24 Uptime --------------------//
-//-------------------- 7/24 Uptime --------------------//
-//-------------------- 7/24 Uptime --------------------//
-
-const express = require("express");
-const app = express();
-const http = require("http");
-app.get("/", (request, response) => {
-  console.log(`7/24 Hizmet Vermekteyim!`);
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
-
-//-------------------- 7/24 Uptime --------------------//
-//-------------------- 7/24 Uptime --------------------//
-//-------------------- 7/24 Uptime --------------------//
-
 client.on("ready", async () => {
   client.appInfo = await client.fetchApplication();
   setInterval(async () => {
@@ -236,21 +215,22 @@ client.channels.cache.get(kanal).send(`:x: ${member.user.tag} sunucudan ayrıld�
 
 //sayaç
 //otorol
-client.on('guildMemberAdd', async member => {
-    var rol = await db.fetch(`rol_${member.guild.id}`)
-    
-    member.roles.add(rol)
-})
-client.on('guildMemberAdd', async member => {
-    var rol = await db.fetch(`rol_${member.guild.id}`)
-    var kanal = await db.fetch(`kanal_${member.guild.id}`)
-
-    var embed = new Discord.MessageEmbed()
-    .setTitle(`Bee6 Otorol`)
-    .setDescription(`Otorol ${member.user} adlı kişiye, <@&${rol}> adında rol verildi!`)
-    .setColor("RANDOM")
+client.on('guildMemberAdd', async (member) => {
+  if(db.has(`${member.guild.id}_otorol`)) {
+    var rolID = db.fetch(`${member.guild.id}_otorol`)
+    member.addRole(rolID)
+  } else {
+    return;
+  }
+  if(db.has(`${member.guild.id}_otokanal`)) {
+    var kanal = client.channels.get(db.fetch(`${member.guild.id}_otokanal`))
+    const embed = new Discord.RichEmbed()
+    .setDescription(`Yeni katılan ${member} kullanıcısına <@&${rolID}> rolü verildi`)
     .setTimestamp()
-  client.channels.cache.get(kanal).send(embed)
+    kanal.send(embed)
+  } else {
+    return;
+  }
 })
 //otorol
 //otoisim
