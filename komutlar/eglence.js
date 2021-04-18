@@ -7,6 +7,7 @@ exports.run = async(client, message, args) => {
      .addField('.espri', 'espri yapar', true)
          .addField('.1vs1', 'etiketlediğin kişiyle 1vs1 atarsın', true)
            .addField('.yazankazanır', 'yazan kazanır oyunu', true)
+    .addField('.snipe', 'silinen bir mesajı gösterir', true)
     .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
 
 message.channel.send(embed)

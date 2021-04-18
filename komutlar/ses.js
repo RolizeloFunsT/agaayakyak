@@ -4,8 +4,8 @@ const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch')
 
 exports.run = async (client, message, args) => {
-  if(!message.member.voice.channel) return message.reply('sese gir')
-if(!args[0]) return message.reply('Değer gir')
+  if(!message.member.voice.channel) return message.reply('Bir Ses Kanalına Gir!')
+if(!args[0]) return message.reply('Bir Değer gir')
 if(args[0] == 'yt') {
 const embed = new MessageEmbed()
 fetch(`https://discord.com/api/v8/channels/${message.member.voice.channel.id}/invites`, {
