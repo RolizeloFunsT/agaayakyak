@@ -13,6 +13,7 @@ const path = require('path');
 const snekfetch = require('snekfetch');
 require("./util/eventLoader")(client);
 const qdb = require('quick.db');
+const roldb = require('quick.db');
 
 client.on("ready", async () => {
   client.appInfo = await client.fetchApplication();
@@ -220,17 +221,17 @@ client.on('guildMemberAdd', async member => {
     
     member.roles.add(rol)
 })
-client.on('guildMemberAdd', async member => {
-    var rol = await db.fetch(`rol_${member.guild.id}`)
-    var kanal = await db.fetch(`kanal_${member.guild.id}`)
-
-    var embed = new Discord.MessageEmbed()
-    .setTitle(`Roliz Otorol`)
-    .setDescription(`Otorol ${member.user} adlı kişiye, <@&${rol}> adında rol verildi!`)
-    .setColor("RANDOM")
-    .setTimestamp()
-  client.channels.cache.get(kanal).send(embed)
-})
+client.on("guildMemberAdd", member => {       
+    var ronney = roldb.fetch(`otorolrolu_${member.guild.id}`);
+  var rol = member.guild.roles.cache.get(ronney)
+ if(!rol) return; //Eğer sunucudaki rol silinirse otorol ayarı silinir
+   member.roles.add(rol.id)
+//-----Rol(ÜST)Yazı(ALT)-----\\
+var ales = roldb.fetch(`otorolkanali_${member.guild.id}`);
+var kanal = member.guild.channels.cache.get(ales)
+if(!kanal) return;
+kanal.send(`<@${member.id}> kişisi sunucuya katıldı, ${rol} rolü verildi. Hoşgeldin ${member.user.username}!`)
+});
 //otorol
 //otoisim
 client.on('guildMemberAdd', member => {  

@@ -1,52 +1,31 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
-
+const alescnm = require('discord.js');
+const roldb = require('quick.db');
 exports.run = async(client, message, args) => {
-    var rolid = message.mentions.roles.first()
-    var kanal = message.mentions.channels.first()
-
-    if(args[0] == 'sıfırla') {
-      db.delete(`rol_${message.guild.id}`)
-      db.delete(`kanal_${message.guild.id}`)
-      var embed = new Discord.MessageEmbed()
-        .setDescription(`Otorol başarı ile sıfırlandı!`)
-        .setColor("YELLOW")
-       .setTimestamp()
-  return message.channel.send(embed)
-    }
-
-    if(!rolid) {
-      var embed = new Discord.MessageEmbed()
-      .setDescription(`Lütfen bir rol etiketleyiniz.`)
-      .setColor("RED")
-      .setTimestamp()
-  return message.channel.send(embed)
-    }
-    if(!kanal) {
-      var embed = new Discord.MessageEmbed()
-     .setDescription(`Lütfen kanal etiketleyiniz`)
-     .setColor("RED")
-     .setTimestamp()
-  return message.channel.send(embed)
-    }
-
-    db.set(`rol_${message.guild.id}`, rolid.id)
-    db.set(`kanal_${message.guild.id}`, kanal.id)
-    var embed = new Discord.MessageEmbed()
-      .setDescription(`Otorol başarı ile ${rolid} olarak ayarlandı, kanal ise ${kanal} olarak ayarlandı.!`)
-      .setColor("GREEN")
-      .setTimestamp()
-  return message.channel.send(embed)
-};
-exports.conf = {
-    enabled: true,
-    guildOnly: true,
-    aliases: [''],
-    permLevel: 2
-};
-  
-  exports.help = {
-    name: 'otorol',
-    description: '',
-    usage: 'otorol'
-};
+    if(!args[0]) return message.reply ("Bir seçenek belirtiniz. Eğer kullanımı bilmiyorsanız `otorol yardım`")
+    if(args[0] == "ayarla" || args[0] == "aç") {
+        if(args[1] == "kanal" ||args[1] == "channel") {
+        var ales = message.mentions.channels.first() || message.guild.channel.cache.get(args[2]);
+    if(!ales) return message.reply('Bir kanal belirtiniz.')
+    roldb.set(`otorolkanali_${message.guild.id}`, ales.id)
+    return message.reply('Otorol kanalı başarı ile ayarlandı.')}
+    if(args[1] == "rol" || args[1] == "role") {
+        var ronney = message.mentions.roles.first() || message.guild.roles.cache.get(args[2]);
+        if(!ronney) return message.reply("Lütfen bir rol belirtiniz")
+        roldb.set(`otorolrolu_${message.guild.id}`, ronney.id)
+        return message.reply('Otorol rolü başarıyla ayarlandı.')}}
+    if(args[0] == "sıfırla" || args[0] == "kapat") {
+        roldb.delete(`otorolkanali_${message.guild.id}`)
+        roldb.delete(`otorolrolu_${message.guild.id}`)
+        message.channel.send('Veritabanı sıfırlandı. Oto-Rol kapatıldı')}
+    if(args[0] == "yardım" || args[0] == "help") {
+        const embedv1 = new alescnm.MessageEmbed()
+        .setColor('BLUE')
+        .setTitle('Oto-Rol Yardım')
+        .addField(`otorol ayarla kanal #kanal`,'Otorol kanalını ayarlar')
+        .addField("otorol ayarla rol @rol","Otorol rolünü ayarlar")
+        .addField("otorol sıfırla","Otorol veritabanını sıfırlar")
+        .setFooter("Roliz")
+        message.channel.send(embedv1)
+}
+}
+module.exports.conf = {permLevel: 3, aliases: []}; module.exports.help = {name: "otorol"}
