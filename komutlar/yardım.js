@@ -9,6 +9,7 @@ exports.run = async(client, message, args) => {
     .addField('.moderasyon', 'moderasyon menüsü', true)
         .addField('.botlist', 'botlist menüsü', true)
      .addField('.eğlence', 'eğlence menüsü', true)
+         .addField('.seviye', 'seviyenizi görüntülersiniz', true)
     .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
 
 message.channel.send(embed)
