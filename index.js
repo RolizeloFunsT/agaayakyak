@@ -215,22 +215,21 @@ client.channels.cache.get(kanal).send(`:x: ${member.user.tag} sunucudan ayrıld�
 
 //sayaç
 //otorol
-client.on('guildMemberAdd', async (member) => {
-  if(db.has(`${member.guild.id}_otorol`)) {
-    var rolID = db.fetch(`${member.guild.id}_otorol`)
-    member.addRole(rolID)
-  } else {
-    return;
-  }
-  if(db.has(`${member.guild.id}_otokanal`)) {
-    var kanal = client.channels.get(db.fetch(`${member.guild.id}_otokanal`))
-    const embed = new Discord.RichEmbed()
-    .setDescription(`Yeni katılan ${member} kullanıcısına <@&${rolID}> rolü verildi`)
+client.on('guildMemberAdd', async member => {
+    var rol = await db.fetch(`rol_${member.guild.id}`)
+    
+    member.roles.add(rol)
+})
+client.on('guildMemberAdd', async member => {
+    var rol = await db.fetch(`rol_${member.guild.id}`)
+    var kanal = await db.fetch(`kanal_${member.guild.id}`)
+
+    var embed = new Discord.MessageEmbed()
+    .setTitle(`Roliz Otorol`)
+    .setDescription(`Otorol ${member.user} adlı kişiye, <@&${rol}> adında rol verildi!`)
+    .setColor("RANDOM")
     .setTimestamp()
-    kanal.send(embed)
-  } else {
-    return;
-  }
+  client.channels.cache.get(kanal).send(embed)
 })
 //otorol
 //otoisim
