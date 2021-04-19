@@ -230,7 +230,7 @@ client.on("guildMemberAdd", member => {
 var ales = roldb.fetch(`otorolkanali_${member.guild.id}`);
 var kanal = member.guild.channels.cache.get(ales)
 if(!kanal) return;
-kanal.send(`<@${member.id}> kişisi sunucuya katıldı, ${rol} rolü verildi. Hoşgeldin ${member.user.username}!`)
+kanal.send(`<@${member.id}> kişisi sunucuya katıldı, ayarlanan rol verildi. Hoşgeldin ${member.user.username}!`)
 });
 //otorol
 //otoisim
