@@ -1,43 +1,60 @@
-const Discord = require('discord.js');
-
-
+const Discord = require("discord.js");
+const db = require("quick.db");
 module.exports.run = async (bot, message, args) => {
-message.delete();
-    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send( "**Üyeleri At** yetkisine sahip değilsin!");
-    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
-    if(!kUser) return message.channel.send('Kullanıcı giriniz.')
-    if(kUser.id === bot.user.id) return message.channel.send('Botu **Atamazsın!**');
-    let kReason = args.join(" ").slice(22);
-    if(!kReason) return message.channel.send('Sebep giriniz...')
-    if(kUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Atmak istediğin kişi **Üyeleri At** yetkisine sahip **Atamam...**");
-
-    let kickEmbed = new Discord.MessageEmbed()
-    .setDescription("Atma")
-    .setColor("#bc0000")
-    .addField("Atılan Kişi", `${kUser} ID'si ${kUser.id}`)
-    .addField("Yetkili", `<@${message.author.id}> ID'si ${message.author.id}`)
-    .addField("Sebep", kReason);
-
+  if (!message.member.hasPermission("KICK_MEMBERS")) {
+    const embed = new Discord.MessageEmbed()
+      .setDescription("**Ne yazık ki bu komutu kullanmaya yetkin yok.**")
+      .setColor("BLACK");
  
+    message.channel.send(embed);
+    return;
+  }
  
+  let u = message.mentions.users.first();
+  if (!u) {
+    return message.channel.send(
+      new Discord.MessageEmbed()
+        .setDescription("Lütfen atılacak kişiyi etiketleyiniz!")
+        .setColor("BLACK")
+        .setFooter(bot.user.username, bot.user.avatarURL)
+    );
+  }
  
+  const embed = new Discord.MessageEmbed()
+    .setColor("BLACK")
+    .setDescription(`${u} Adlı şahsın sunucudan atılmasını onaylıyor musunuz?`)
+    .setFooter(bot.user.username, bot.user.avatarURL);
+  message.channel.send(embed).then(async function(sentEmbed) {
+    const emojiArray = ["✅"];
+    const filter = (reaction, user) =>
+      emojiArray.includes(reaction.emoji.name) && user.id === message.author.id;
+    await sentEmbed.react(emojiArray[0]).catch(function() {});
+    var reactions = sentEmbed.createReactionCollector(filter, {
+      time: 30000
+    });
+    reactions.on("end", () => sentEmbed.edit("İşlem iptal oldu!"));
+    reactions.on("collect", async function(reaction) {
+      if (reaction.emoji.name === "✅") {
+        message.channel.send(
+          `İşlem onaylandı! ${u} adlı şahıs sunucudan atıldı!`
+        );
  
-    let incidentchannel = message.guild.channels.cache.find(`name`, "mod-log");
-    if(!incidentchannel) return message.channel.send("`mod-log` kanalını bulamıyorum.");
-
-    message.guild.member(kUser).kick(kReason);
-    incidentchannel.send(kickEmbed);
+        message.guild.member(u).kick();
+      }
+    });
+  });
 };
-
-exports.conf = {
+ 
+module.exports.conf = {
+  aliases: [],
+  permLevel: 2,
   enabled: true,
   guildOnly: true,
-  aliases: [],
-  permLevel: 0
+  kategori: "moderasyon"
 };
-
-exports.help = {
-  name: 'kick',
-  description: 'İstediğiniz kişiyi atar.',
-  usage: 'kick [kullanıcı] [sebep]'
+ 
+module.exports.help = {
+  name: "kick",
+  description: "kick",
+  usage: "kick"
 };
