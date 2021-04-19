@@ -10,6 +10,8 @@ exports.run = async(client, message, args) => {
         .addField('.reklam-engel', 'reklam-engel menüsü', true)
         .addField('.küfür-engel', 'küfür-engel menüsü', true)
       .addField('.sustur', 'susturma komutu', true)
+     .addField('.kick', 'kick komutu', true)
+     .addField('.ban', 'ban komutu', true)
     .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
 
 message.channel.send(embed)
