@@ -7,6 +7,7 @@ exports.run = async(client, message, args) => {
          .addField('.seviye', 'seviyenizi görüntülersiniz', true)
        .addField('.ses', 'ses kanalında youtube vs. açarsınız', true)
        .addField('.avatar', 'avatarınızı görüntülersiniz', true)
+           .addField('.radyo', 'radyo dinlersiniz', true)
     .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
 
 message.channel.send(embed)
