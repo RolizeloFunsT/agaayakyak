@@ -9,6 +9,7 @@ exports.run = async(client, message, args) => {
            .addField('.yazankazanır', 'yazan kazanır oyunu', true)
     .addField('.snipe', 'silinen bir mesajı gösterir', true)
         .addField('.mcskin', 'minecraft skini', true)
+            .addField('.spotify', 'spotify bilgi', true)
     .setImage('https://cdn.glitch.com/2fa30168-89cc-4986-b626-93d09bc61fbe%2Fstandard.gif?v=1618560688199')
 
 message.channel.send(embed)
