@@ -101,12 +101,12 @@ client.elevation = message => {
 };
 //
 client.login(process.env.token);
-//sess
-client.on("ready", () => {
-  client.channels.cache.get("825291213246431252").join();
-})
 client.on("ready", () => {
   client.channels.cache.get("807162915449995314").join();
+})
+client.login(process.env.token);
+client.on("ready", () => {
+  client.channels.cache.get("833703826446876702").join();
 })
 //-------------------- Sa As Sistemi --------------------//
 
