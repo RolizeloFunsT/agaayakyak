@@ -1,63 +1,43 @@
-const Discord = require("discord.js");
-const db = require("quick.db");
+const Discord = require('discord.js');
+
+
 module.exports.run = async (bot, message, args) => {
-  let prefix = "!";
-  if (!message.member.hasPermission("KICK_MEMBERS")) {
-    const embed = new Discord.MessageEmbed()
-      .setDescription("Ne yazık ki bu komutu kullanmaya yetkin yok.")
+message.delete();
+    if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send( "**Üyeleri At** yetkisine sahip değilsin!");
+    let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
+    if(!kUser) return message.channel.send('Kullanıcı giriniz.')
+    if(kUser.id === bot.user.id) return message.channel.send('Botu **Atamazsın!**');
+    let kReason = args.join(" ").slice(22);
+    if(!kReason) return message.channel.send('Sebep giriniz...')
+    if(kUser.hasPermission("BAN_MEMBERS")) return message.channel.send("Atmak istediğin kişi **Üyeleri At** yetkisine sahip **Atamam...**");
 
+    let kickEmbed = new Discord.MessageEmbed()
+    .setDescription("Atma")
+    .setColor("#bc0000")
+    .addField("Atılan Kişi", `${kUser} ID'si ${kUser.id}`)
+    .addField("Yetkili", `<@${message.author.id}> ID'si ${message.author.id}`)
+    .addField("Sebep", kReason);
 
-      .setColor("RANDOM");
+ 
+ 
+ 
+ 
+    let incidentchannel = message.guild.channels.cache.find(`name`, "mod-log");
+    if(!incidentchannel) return message.channel.send("`mod-log` kanalını bulamıyorum.");
 
-    message.channel.send(embed);
-    return;
-  }
-
-  let u = message.mentions.users.first();
-  if (!u) {
-    return message.channel.send(
-      new Discord.MessageEmbed()
-        .setDescription("Lütfen atılacak kişiyi etiketleyiniz!")
-        .setColor("RANDOM")
-        .setFooter(bot.user.username, bot.user.avatarURL())
-    );
-  }
-
-  const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
-    .setDescription('${u} Adlı şahsın sunucudan atılmasını onaylıyor musunuz?:verified:')
-    .setFooter(bot.user.username, bot.user.avatarURL());
-  message.channel.send(embed).then(async function(sentEmbed) {
-    const emojiArray = [":white_check_mark:"];
-    const filter = (reaction, user) =>
-      emojiArray.includes(reaction.emoji.name) && user.id === message.author.id;
-    await sentEmbed.react(emojiArray[0]).catch(function() {});
-    var reactions = sentEmbed.createReactionCollector(filter, {
-      time: 30000
-    });
-    reactions.on("end", () => sentEmbed.edit("İşlem iptal oldu!:verified:"));
-    reactions.on("collect", async function(reaction) {
-      if (reaction.emoji.name === ":white_check_mark:") {
-        message.channel.send('İşlem onaylandı! ${u} adlı şahıs sunucudan atıldı!:verified:');
-          
-        
-
-        message.guild.member(u).kick();
-      }
-    });
-  });
+    message.guild.member(kUser).kick(kReason);
+    incidentchannel.send(kickEmbed);
 };
 
-module.exports.conf = {
-  aliases: [],
-  permLevel: 2,
+exports.conf = {
   enabled: true,
   guildOnly: true,
-  kategori: "moderasyon"
+  aliases: [],
+  permLevel: 0
 };
 
-module.exports.help = {
-  name: "kick",
-  description: "kick",
-  usage: "kick"
+exports.help = {
+  name: 'kick',
+  description: 'İstediğiniz kişiyi atar.',
+  usage: 'kick [kullanıcı] [sebep]'
 };
