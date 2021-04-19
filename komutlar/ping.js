@@ -14,7 +14,7 @@ exports.run = async (app, message, client) => {
     setInterval(() => {
    const plasmiccc = new Discord.MessageEmbed()
    .setDescription(`\n Mesaj Gecikme Süresi ; **${plasmiccodee}Ms** \n\n Bot Gecikme Süresi ; **${plasmicAPI}Ms**`)
-   .setColor('RANDOM')
+   .setColor('GREEN')
     plasmiccode.edit(plasmiccc);
     }, 5000)
 };
