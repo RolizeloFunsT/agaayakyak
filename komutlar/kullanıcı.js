@@ -16,11 +16,11 @@ exports.conf = {
 enabled: true,
 guildOnly: false,
 permLevel: 0,
-aliases: ['help']
+aliases: ['khelp']
 
 
 
 };
 exports.help = {
-name: "yardım"
+name: "kullanıcı"
 };
