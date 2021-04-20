@@ -1,4 +1,5 @@
 dependencies:
+  botdash.pro: 1.0.2
   canvacord: 5.1.0
   canvas: 2.6.1
   chalk: 4.1.0
@@ -706,6 +707,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+  /botdash.pro/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-IMwegSnnxq5o5hG9ZsirnNzmlQJqVVqx0ir85RQ1NDg8oL++EHN0kJGe+HlLJuD3jrKG5YN8JXuEuv0VkjgbcQ==
   /brace-expansion/1.1.11:
     dependencies:
       balanced-match: 1.0.0
@@ -3610,6 +3615,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  botdash.pro: 1.0.2
   canvacord: 5.1.0
   canvas: ^2.6.1
   chalk: ^4.1.0

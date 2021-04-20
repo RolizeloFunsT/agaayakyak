@@ -41,7 +41,8 @@
     "eris": "0.15.0",
     "canvacord": "5.1.0",
     "novelcovid": "3.0.0",
-    "speedtest-net": "2.2.0"
+    "speedtest-net": "2.2.0",
+    "botdash.pro": "1.0.2"
   },
   "engines": {
     "node": "12.x"
