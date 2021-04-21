@@ -284,14 +284,3 @@ client.on('messageDelete', async message => {// can#0002
 });
 
 //snipe
-//botdash
-
-const botdash = require('botdash.pro'); //Botdash tanımla
-var dashboard = ""; //öyle
-
-client.on('ready', () => {
-    console.log("ready");
-    dashboard = new botdash.APIclient("e46ebebf-6f1c-4713-bb0b-818c73517722"); //botdash tokeniniz  
-});
-
-//botdash
