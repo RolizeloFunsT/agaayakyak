@@ -244,32 +244,25 @@ client.on('messageDelete', async message => {// can#0002
 
 //snipe
 //sayaç
-
-client.on("guildMemberAdd", async member => {
-  let sayı = await db.fetch(`SayaçSayı_${member.guild.id}`);
-  let kanal = await db.fetch(`SayaçKanal_${member.guild.id}`);
-  if (!sayı || !kanal) return;
-  let sonuç = sayı - member.guild.memberCount;
-  client.channels.cache
-    .get(kanal)
-    .send(
-      `:white_check_mark:${member}, Aramıza katıldı! **${sayı}** kişiye ulaşmak için **${sonuç}** kişi kaldı Şuan **${member.guild.memberCount}** Kişiyiz`
-    );
-  return;
-});
-client.on("guildMemberRemove", async member => {
-  let sayı = await db.fetch(`SayaçSayı_${member.guild.id}`);
-  let kanal = await db.fetch(`SayaçKanal_${member.guild.id}`);
-  if (!sayı || !kanal) return;
-  let sonuç = sayı - member.guild.memberCount;
-
-  client.channels.cache
-    .get(kanal)
-    .send(
-      `:x:${member}, Aramızdan ayrıldı! **${sayı}** kişiye ulaşmak için **${sonuç}** kişi kaldı Şuan **${member.guild.memberCount}** Kişiyiz`
-    );
-  return;
-});
-
+//sayaç
+client.on("guildMemberAdd", member => {
+var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
+if(!kanal) return;
+var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
+if(!hedef) return;
+client.channels.cache.get(kanal).send(`<a:girdi:830003542726148156> **${member} Sunucuya katıldı! Hedefimize ulaşmamıza __${hedef - member.guild.memberCount}__ kişi kaldı!**`)
+if(hedef <= member.guild.memberCount){
+  client.channels.cache.get(kanal).send(`Hedefimizi başardık! Sunucumuz ${hedef} kişiye ulaştı!`)
+  qdb.delete(`sayackanali_${member.guild.id}`)
+  qdb.delete(`sayachedef_${member.guild.id}`)
+}
+})
+client.on("guildMemberRemove", member => {
+var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
+if(!kanal) return;
+var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
+if(!hedef) return;
+client.channels.cache.get(kanal).send(`<a:cikti:830003832419254313> **${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza __${hedef - member.guild.memberCount}__ kişi kaldı!**`)
+})
 
 //sayaç
