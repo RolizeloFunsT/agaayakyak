@@ -192,47 +192,6 @@ else return;
 });
 
 //reklamengel
-//sayaç
-
-client.on("guildMemberAdd", member => {
-var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
-if(!kanal) return;
-var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
-if(!hedef) return;
-client.channels.cache.get(kanal).send(`:white_check_mark: ${member} Sunucuya katıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
-if(hedef <= member.guild.memberCount){
-  client.channels.cache.get(kanal).send(`:tada: Hedefimizi başardık! Sunucumuz ${hedef} kişiye ulaştı!`)
-  qdb.delete(`sayackanali_${member.guild.id}`)
-  qdb.delete(`sayachedef_${member.guild.id}`)
-}
-})
-client.on("guildMemberRemove", member => {
-var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
-if(!kanal) return;
-var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
-if(!hedef) return;
-client.channels.cache.get(kanal).send(`:x: ${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
-})
-
-//sayaç
-//otorol
-client.on('guildMemberAdd', async member => {
-    var rol = await db.fetch(`rol_${member.guild.id}`)
-    
-    member.roles.add(rol)
-})
-client.on("guildMemberAdd", member => {       
-    var ronney = roldb.fetch(`otorolrolu_${member.guild.id}`);
-  var rol = member.guild.roles.cache.get(ronney)
- if(!rol) return; //Eğer sunucudaki rol silinirse otorol ayarı silinir
-   member.roles.add(rol.id)
-//-----Rol(ÜST)Yazı(ALT)-----\\
-var ales = roldb.fetch(`otorolkanali_${member.guild.id}`);
-var kanal = member.guild.channels.cache.get(ales)
-if(!kanal) return;
-kanal.send(`<@${member.id}> kişisi sunucuya katıldı, ayarlanan rol verildi. Hoşgeldin ${member.user.username}!`)
-});
-//otorol
 //otoisim
 client.on('guildMemberAdd', member => {  
   var arezreiz = qdb.fetch(`otoisim_${member.guild.id}`)
@@ -284,3 +243,26 @@ client.on('messageDelete', async message => {// can#0002
 });
 
 //snipe
+//sayaç
+
+client.on("guildMemberAdd", member => {
+var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
+if(!kanal) return;
+var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
+if(!hedef) return;
+client.channels.cache.get(kanal).send(`${member} Sunucuya katıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
+if(hedef <= member.guild.memberCount){
+  client.channels.cache.get(kanal).send(`Hedefimizi başardık! Sunucumuz ${hedef} kişiye ulaştı!`)
+  qdb.delete(`sayackanali_${member.guild.id}`)
+  qdb.delete(`sayachedef_${member.guild.id}`)
+}
+})
+client.on("guildMemberRemove", member => {
+var kanal = qdb.fetch(`sayackanali_${member.guild.id}`)
+if(!kanal) return;
+var hedef = qdb.fetch(`sayachedef_${member.guild.id}`)
+if(!hedef) return;
+client.channels.cache.get(kanal).send(`${member.user.tag} sunucudan ayrıldı! Hedefimize ulaşmamıza ${hedef - member.guild.memberCount} kişi kaldı!`)
+})
+
+//sayaç
